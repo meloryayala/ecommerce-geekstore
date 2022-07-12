@@ -1,9 +1,37 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {HomeIcon, ListIcon, LogInIcon, MenuIcon, PercentCircle, ShoppingCartIcon} from "lucide-react";
-import {Sheet, SheetContent, SheetHeader, SheetTrigger} from "@/components/ui/sheet";
+import {
+  HomeIcon,
+  ListIcon,
+  LogInIcon,
+  LogOutIcon,
+  MenuIcon,
+  PercentCircle,
+  ShoppingCartIcon,
+} from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 const Header = () => {
+  const { status, data } = useSession();
+
+  const handleLoginClick = async () => {
+    await signIn();
+  };
+
+  const handleLogoutClick = async () => {
+    await signOut();
+  };
+
   return (
     <Card className="flex items-center justify-between p-[1.875rem]">
       <Sheet>
@@ -13,33 +41,69 @@ const Header = () => {
           </Button>
         </SheetTrigger>
 
-          <SheetContent side="left">
-              <SheetHeader className="text-left text-lg font-semibold">
-                  Menu
-              </SheetHeader>
+        <SheetContent side="left">
+          <SheetHeader className="text-left text-lg font-semibold">
+            Menu
+          </SheetHeader>
 
-              <div className="mt-2 flex flex-col gap-2">
-                  <Button variant="outline" className="w-full justify-start gap-2">
-                      <LogInIcon size={16} />
-                      Login
-                  </Button>
+          <div className="mt-4 flex flex-col gap-2">
+            {status === "authenticated" && data?.user && (
+              <div className="flex-col">
+                <div className="flex items-center gap-2 py-4">
+                  <Avatar>
+                    <AvatarFallback>
+                      {data.user.name?.[0].toUpperCase()}
+                    </AvatarFallback>
 
-                  <Button variant="outline" className="w-full justify-start gap-2">
-                      <HomeIcon size={16} />
-                      Home
-                  </Button>
+                    {data.user.image && <AvatarImage src={data.user.image} />}
+                  </Avatar>
 
-                  <Button variant="outline" className="w-full justify-start gap-2">
-                      <PercentCircle size={16} />
-                      Sale
-                  </Button>
-
-                  <Button variant="outline" className="w-full justify-start gap-2">
-                      <ListIcon size={16} />
-                      Catalogue
-                  </Button>
+                  <div className="flex-col">
+                    <p className="font-medium">{data.user.name}</p>
+                    <p className="text-sm opacity-70">Good purchase!</p>
+                  </div>
+                </div>
+                <Separator />
               </div>
-          </SheetContent>
+            )}
+
+            <Button variant="outline" className="w-full justify-start gap-2">
+              <HomeIcon size={16} />
+              Home
+            </Button>
+
+            <Button variant="outline" className="w-full justify-start gap-2">
+              <PercentCircle size={16} />
+              Sale
+            </Button>
+
+            <Button variant="outline" className="w-full justify-start gap-2">
+              <ListIcon size={16} />
+              Catalogue
+            </Button>
+
+            {status === "unauthenticated" && (
+              <Button
+                onClick={handleLoginClick}
+                variant="outline"
+                className="w-full justify-start gap-2"
+              >
+                <LogInIcon size={16} />
+                Login
+              </Button>
+            )}
+            {status === "authenticated" && (
+              <Button
+                onClick={handleLogoutClick}
+                variant="outline"
+                className="w-full justify-start gap-2"
+              >
+                <LogOutIcon size={16} />
+                Logout
+              </Button>
+            )}
+          </div>
+        </SheetContent>
       </Sheet>
 
       <h1 className="text-lg font-semibold">
