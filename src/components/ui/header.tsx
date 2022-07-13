@@ -79,7 +79,7 @@ const Header = () => {
 
             <Button variant="outline" className="w-full justify-start gap-2">
               <ListIcon size={16} />
-              Catalogue
+              Catalog
             </Button>
 
             {status === "unauthenticated" && (
