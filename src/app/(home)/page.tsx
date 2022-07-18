@@ -24,25 +24,29 @@ const Home = async () => {
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <PromoBanner src="/banner-home-01.png" alt="Up to 55% discount!" />
 
-      <div className="mt-8 px-5">
+      <div className="px-5">
         <Categories />
       </div>
 
-      <div className="mt-8">
+      <div>
         <SectionTitle>Sales</SectionTitle>
         <ProductList products={deals} />
       </div>
 
-      <div className="mt-8">
-        <PromoBanner src="/banner-home-02.png" alt="Up to 55% discount!" />
+      <div>
+        <PromoBanner src="/banner-home-02.png" alt="Up to 55% discount on keyboards!" />
       </div>
 
-      <div className="mt-8">
+      <div>
         <SectionTitle>Keyboards</SectionTitle>
         <ProductList products={keyboards} />
+      </div>
+
+      <div>
+        <PromoBanner src="/banner-home-03.png" alt="Up to 55% discount! on keyboards!" />
       </div>
     </div>
   );
