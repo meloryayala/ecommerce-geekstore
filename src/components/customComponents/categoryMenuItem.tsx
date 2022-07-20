@@ -7,7 +7,7 @@ interface CategoryItemProps {
     category: Category
 }
 
-const CategoryItem: FC<CategoryItemProps> = ({category}) => {
+const CategoryMenuItem: FC<CategoryItemProps> = ({category}) => {
     const categoryIcon = {
         "mouses": <MouseIcon size={16} />,
         "keyboards": <KeyboardIcon size={16} />,
@@ -24,4 +24,4 @@ const CategoryItem: FC<CategoryItemProps> = ({category}) => {
         </Badge>
     );
 };
-export default CategoryItem;
+export default CategoryMenuItem;
