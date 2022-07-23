@@ -1,35 +1,34 @@
 import Image from "next/image";
-import {Category} from "@prisma/client";
-import {FC} from "react";
+import { Category } from "@prisma/client";
+import { FC } from "react";
+import Link from "next/link";
 
 interface CategoryCardItemProps {
-    category: Category;
+  category: Category;
 }
 
-const CategoryCardItem: FC<CategoryCardItemProps> = ({category}) => {
-    console.log(category)
-    return (
-        <div className="flex flex-col">
-            <div className="flex w-full h-[150px] items-center justify-center bg-category-gradient rounded-t-lg">
-                <Image
-                    src={category.imageUrl}
-                    height={0}
-                    width={0}
-                    sizes="100vw"
-                    className="h-auto max-h-[70%] w-auto max-w-[80%]"
-                    style={{
-                        objectFit: "contain",
-                    }}
-                    alt={category.name}
-                />
-            </div>
-            <div className="bg-accent py-3 rounded-b-lg">
-                <p className="text-sm font-semibold text-center">
-                {category.name}
-                </p>
-            </div>
-
+const CategoryCardItem: FC<CategoryCardItemProps> = ({ category }) => {
+  return (
+    <Link href={`/category/${category.slug}`}>
+      <div className="flex flex-col">
+        <div className="flex h-[150px] w-full items-center justify-center rounded-t-lg bg-category-gradient">
+          <Image
+            src={category.imageUrl}
+            height={0}
+            width={0}
+            sizes="100vw"
+            className="h-auto max-h-[70%] w-auto max-w-[80%]"
+            style={{
+              objectFit: "contain",
+            }}
+            alt={category.name}
+          />
         </div>
-    );
+        <div className="rounded-b-lg bg-accent py-3">
+          <p className="text-center text-sm font-semibold">{category.name}</p>
+        </div>
+      </div>
+    </Link>
+  );
 };
 export default CategoryCardItem;
