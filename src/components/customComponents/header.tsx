@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTrigger,
@@ -20,6 +21,7 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -77,10 +79,17 @@ const Header = () => {
               Sale
             </Button>
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <ListIcon size={16} />
-              Catalog
-            </Button>
+            <SheetClose asChild>
+              <Link href={"/catalog"}>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <ListIcon size={16} />
+                  Catalog
+                </Button>
+              </Link>
+            </SheetClose>
 
             {status === "unauthenticated" && (
               <Button

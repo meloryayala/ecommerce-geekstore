@@ -1,5 +1,3 @@
-"use client";
-
 import Categories from "@/components/customComponents/categories";
 import { prismaClient } from "@/lib/prisma";
 import ProductList from "@/components/customComponents/productList";
