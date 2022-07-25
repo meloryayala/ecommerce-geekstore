@@ -69,10 +69,12 @@ const Header = () => {
               </div>
             )}
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <HomeIcon size={16} />
-              Home
-            </Button>
+            <Link href="/">
+              <Button variant="outline" className="w-full justify-start gap-2">
+                <HomeIcon size={16} />
+                Home
+              </Button>
+            </Link>
 
             <Button variant="outline" className="w-full justify-start gap-2">
               <PercentCircle size={16} />
@@ -115,10 +117,12 @@ const Header = () => {
         </SheetContent>
       </Sheet>
 
-      <h1 className="text-lg font-semibold">
-        <span className="text-primary">Geek</span>
-        Store
-      </h1>
+      <Link href="/">
+        <h1 className="text-lg font-semibold">
+          <span className="text-primary">Geek</span>
+          Store
+        </h1>
+      </Link>
 
       <Button size="icon" variant="outline">
         <ShoppingCartIcon />
