@@ -3,8 +3,15 @@ import { Badge } from "@/components/ui/badge";
 import ProductItem from "@/components/customComponents/productItem";
 import { computedProductTotalPrice } from "@/helpers/product";
 import { CATEGORY_ICONS } from "@/contants/categoryIcon";
+import {FC} from "react";
 
-const CatalogPage = async ({ params }: any) => {
+interface CatalogPageProps {
+    params: {
+        slug: string
+    }
+}
+
+const CatalogPage: FC<CatalogPageProps> = async ({ params }) => {
   const category = await prismaClient.category.findFirst({
     where: {
       slug: params.slug,
@@ -14,8 +21,8 @@ const CatalogPage = async ({ params }: any) => {
     },
   });
 
-  if(!category) {
-      return null;
+  if (!category) {
+    return null;
   }
 
   return (
