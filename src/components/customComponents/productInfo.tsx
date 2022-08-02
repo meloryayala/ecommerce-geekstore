@@ -26,7 +26,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
 
   const [quantity, setQuantity] = useState(1);
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 px-5">
       <h1 className="text-lg">{product.name}</h1>
 
       <div className="flex flex-col gap-1">
