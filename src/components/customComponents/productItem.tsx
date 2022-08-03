@@ -1,9 +1,8 @@
 import { FC } from "react";
 import Image from "next/image";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { Badge } from "@/components/ui/badge";
-import { ArrowDown } from "lucide-react";
 import Link from "next/link";
+import DiscountBadge from "@/components/discountBadge";
 
 interface ProductItemProps {
   product: ProductWithTotalPrice;
@@ -27,10 +26,9 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
           />
 
           {product.discountPercentage > 0 && (
-            <Badge className="absolute left-3 top-3 gap-1 px-2 py-[2px]">
-              <ArrowDown size={14} />
-              {product.discountPercentage}%
-            </Badge>
+            <DiscountBadge className="absolute left-3 top-3">
+              {product.discountPercentage}
+            </DiscountBadge>
           )}
         </div>
 

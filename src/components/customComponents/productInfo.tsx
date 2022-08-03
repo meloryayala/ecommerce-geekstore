@@ -2,9 +2,9 @@
 
 import { FC, useState } from "react";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { Badge } from "@/components/ui/badge";
-import {ArrowDown, ArrowLeft, ArrowRight, TruckIcon} from "lucide-react";
+import { ArrowLeft, ArrowRight, TruckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DiscountBadge from "@/components/discountBadge";
 
 interface ProductInfoProps {
   product: Pick<
@@ -35,10 +35,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
             € {product.totalPrice.toFixed(2)}
           </h2>
           {product.discountPercentage > 0 && (
-            <Badge className="gap-1 px-2 py-[2px]">
-              <ArrowDown size={14} />
-              {product.discountPercentage}%
-            </Badge>
+            <DiscountBadge>{product.discountPercentage}</DiscountBadge>
           )}
         </div>
 
