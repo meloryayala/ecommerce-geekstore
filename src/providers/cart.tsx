@@ -1,0 +1,43 @@
+"use client"
+
+import {Product} from "@prisma/client";
+import {createContext, FC} from "react";
+import {ReactNode} from "react";
+
+interface CartProviderProps {
+    children: ReactNode
+}
+
+interface CartProduct extends Product {
+    quantity: number;
+}
+
+interface ICartContext {
+    products: CartProduct[];
+    cartTotalPrice: number;
+    cartBasePrice: number;
+    cartTotalDiscount: number;
+}
+
+const CartContext = createContext<ICartContext>({
+    products: [],
+    cartTotalPrice: 0,
+    cartBasePrice: 0,
+    cartTotalDiscount: 0,
+
+})
+
+export const CartProvider:FC<CartProviderProps> = ({children}) => {
+    return (
+        <CartContext.Provider value={{
+            products: [],
+            cartTotalPrice: 0,
+            cartBasePrice: 0,
+            cartTotalDiscount: 0,
+        }}>
+            {children}
+        </CartContext.Provider>
+    );
+};
+
+export  default CartProvider;
