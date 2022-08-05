@@ -1,19 +1,20 @@
 "use client";
 
-import { FC, useState } from "react";
+import {FC, useContext, useState} from "react";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { ArrowLeft, ArrowRight, TruckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/discountBadge";
+import {CartContext} from "@/providers/cart";
 
 interface ProductInfoProps {
-  product: Pick<
-    ProductWithTotalPrice,
-    "basePrice" | "description" | "discountPercentage" | "totalPrice" | "name"
-  >;
+  product: ProductWithTotalPrice;
 }
 
 const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addProductToCart } = useContext(CartContext);
+
   const handleDecreaseClick = () => {
     setQuantity((currentState) =>
       currentState === 1 ? currentState : currentState - 1,
@@ -24,7 +25,14 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
     setQuantity((currentState) => currentState + 1);
   };
 
-  const [quantity, setQuantity] = useState(1);
+  const handleAddToCartClick = () => {
+      addProductToCart({
+          ...product,
+          quantity
+      })
+      console.log(product, quantity)
+  }
+
   return (
     <div className="flex flex-col gap-5 px-5">
       <h1 className="text-lg">{product.name}</h1>
@@ -64,7 +72,11 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
       </div>
 
       <div className="mt-8">
-        <Button className="w-full font-bold uppercase">Add to cart</Button>
+        <Button
+            onClick={handleAddToCartClick}
+            className="w-full font-bold uppercase">
+            Add to cart
+        </Button>
     </div>
 
         <div className="flex items-center bg-accent justify-between p-4 rounded-lg">

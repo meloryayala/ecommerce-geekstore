@@ -22,6 +22,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import Cart from "@/components/customComponents/cart";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -69,12 +70,17 @@ const Header = () => {
               </div>
             )}
 
-            <Link href="/">
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <HomeIcon size={16} />
-                Home
-              </Button>
-            </Link>
+            <SheetClose asChild>
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <HomeIcon size={16} />
+                  Home
+                </Button>
+              </Link>
+            </SheetClose>
 
             <Button variant="outline" className="w-full justify-start gap-2">
               <PercentCircle size={16} />
@@ -124,9 +130,17 @@ const Header = () => {
         </h1>
       </Link>
 
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size="icon" variant="outline">
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent>
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 };
