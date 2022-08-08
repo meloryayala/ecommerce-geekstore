@@ -17,6 +17,7 @@ interface ICartContext {
   cartBasePrice: number;
   cartTotalDiscount: number;
   addProductToCart: (product: CartProduct) => void;
+  decreaseProductQuantity: (productId: string)  => void;
 }
 
 export const CartContext = createContext<ICartContext>({
@@ -25,6 +26,7 @@ export const CartContext = createContext<ICartContext>({
   cartBasePrice: 0,
   cartTotalDiscount: 0,
   addProductToCart: () => {},
+  decreaseProductQuantity: () => {},
 });
 
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
@@ -36,7 +38,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     );
 
     if (productIsAlreadyOnCart) {
-        //if product is already on the cart just add the amount selected
+      //if product is already on the cart just add the amount selected
       setProducts((prevState) =>
         prevState.map((cartProduct) => {
           if (cartProduct.id === product.id) {
@@ -44,14 +46,27 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
               ...cartProduct,
               quantity: cartProduct.quantity + product.quantity,
             };
-          }
-          return cartProduct;
+          } else return cartProduct;
         }),
       );
-      return;
+    } else {
+      //Otherwise add the product to the cart list
+      setProducts((prevState) => [...prevState, product]);
     }
-    //Otherwise add the product to the cart list
-    setProducts((prevState) => [...prevState, product]);
+  };
+
+  const decreaseProductQuantity = (productId: string) => {
+    setProducts((prevState) =>
+      prevState.map((cartProduct) => {
+          if (cartProduct.id === productId) {
+            return {
+              ...cartProduct,
+              quantity: cartProduct.quantity - 1,
+            };
+          } else return cartProduct;
+        })
+        .filter((cartProduct) => cartProduct.quantity > 0),
+    );
   };
 
   return (
@@ -62,6 +77,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         cartBasePrice: 0,
         cartTotalDiscount: 0,
         addProductToCart,
+          decreaseProductQuantity,
       }}
     >
       {children}
