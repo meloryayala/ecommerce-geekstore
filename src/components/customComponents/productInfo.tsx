@@ -1,11 +1,11 @@
 "use client";
 
-import {FC, useContext, useState} from "react";
+import { FC, useContext, useState } from "react";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { ArrowLeft, ArrowRight, TruckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/discountBadge";
-import {CartContext} from "@/providers/cart";
+import { CartContext } from "@/providers/cart";
 
 interface ProductInfoProps {
   product: ProductWithTotalPrice;
@@ -26,12 +26,11 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
   };
 
   const handleAddToCartClick = () => {
-      addProductToCart({
-          ...product,
-          quantity
-      })
-      console.log(product, quantity)
-  }
+    addProductToCart({
+      ...product,
+      quantity,
+    });
+  };
 
   return (
     <div className="flex flex-col gap-5 px-5">
@@ -73,25 +72,27 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
 
       <div className="mt-8">
         <Button
-            onClick={handleAddToCartClick}
-            className="w-full font-bold uppercase">
-            Add to cart
+          onClick={handleAddToCartClick}
+          className="w-full font-bold uppercase"
+        >
+          Add to cart
         </Button>
-    </div>
-
-        <div className="flex items-center bg-accent justify-between p-4 rounded-lg">
-            <div className="flex items-center gap-2">
-                <TruckIcon size={50} />
-                <div className="flex flex-col">
-                    <p>Delivery by
-                        <span className="font-bold"> FSPacket®</span>
-                    </p>
-                    <p className="text-primary-light">Shipping worldwide</p>
-                </div>
-            </div>
-            <span className="font-bold"> Free delivery</span>
-        </div>
       </div>
+
+      <div className="flex items-center justify-between rounded-lg bg-accent p-4">
+        <div className="flex items-center gap-2">
+          <TruckIcon size={50} />
+          <div className="flex flex-col">
+            <p>
+              Delivery by
+              <span className="font-bold"> FSPacket®</span>
+            </p>
+            <p className="text-primary-light">Shipping worldwide</p>
+          </div>
+        </div>
+        <span className="font-bold"> Free delivery</span>
+      </div>
+    </div>
   );
 };
 export default ProductInfo;

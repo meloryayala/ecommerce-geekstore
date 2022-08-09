@@ -17,7 +17,9 @@ interface ICartContext {
   cartBasePrice: number;
   cartTotalDiscount: number;
   addProductToCart: (product: CartProduct) => void;
-  decreaseProductQuantity: (productId: string)  => void;
+  decreaseProductQuantity: (productId: string) => void;
+  increaseProductQuantity: (productId: string) => void;
+  deleteProductCart: (productId: string) => void;
 }
 
 export const CartContext = createContext<ICartContext>({
@@ -27,6 +29,8 @@ export const CartContext = createContext<ICartContext>({
   cartTotalDiscount: 0,
   addProductToCart: () => {},
   decreaseProductQuantity: () => {},
+  increaseProductQuantity: () => {},
+  deleteProductCart: () => {},
 });
 
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
@@ -57,7 +61,8 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
 
   const decreaseProductQuantity = (productId: string) => {
     setProducts((prevState) =>
-      prevState.map((cartProduct) => {
+      prevState
+        .map((cartProduct) => {
           if (cartProduct.id === productId) {
             return {
               ...cartProduct,
@@ -69,6 +74,25 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     );
   };
 
+  const increaseProductQuantity = (productId: string) => {
+    setProducts((prevState) =>
+      prevState.map((cartProduct) => {
+        if (cartProduct.id === productId) {
+          return {
+            ...cartProduct,
+            quantity: cartProduct.quantity + 1,
+          };
+        } else return cartProduct;
+      }),
+    );
+  };
+
+  const deleteProductCart = (productId: string) => {
+    setProducts((prevState) =>
+      prevState.filter((cartProduct) => cartProduct.id !== productId),
+    );
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -77,7 +101,9 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         cartBasePrice: 0,
         cartTotalDiscount: 0,
         addProductToCart,
-          decreaseProductQuantity,
+        decreaseProductQuantity,
+        increaseProductQuantity,
+        deleteProductCart,
       }}
     >
       {children}

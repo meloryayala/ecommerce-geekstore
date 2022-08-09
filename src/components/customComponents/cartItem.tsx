@@ -1,19 +1,28 @@
 import type { CartProduct } from "@/providers/cart";
-import {FC, useContext} from "react";
+import { CartContext } from "@/providers/cart";
+import { FC, useContext } from "react";
 import { ArrowLeft, ArrowRight, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {CartContext} from "@/providers/cart";
 
 interface CartItemProps {
   product: CartProduct;
 }
 
 const CartItem: FC<CartItemProps> = ({ product }) => {
-  const {decreaseProductQuantity} = useContext(CartContext)
+  const { decreaseProductQuantity, increaseProductQuantity, deleteProductCart } =
+    useContext(CartContext);
 
   const handleDecreaseProductQuantity = () => {
-    decreaseProductQuantity(product.id)
+    decreaseProductQuantity(product.id);
+  };
+
+  const handleIncreaseProductQuantity = () => {
+    increaseProductQuantity(product.id);
+  };
+
+  const handleDeleteProductCart = () => {
+    deleteProductCart(product.id)
   }
 
   return (
@@ -48,20 +57,30 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button onClick={handleDecreaseProductQuantity} size="icon" variant="outline" className="h-8 w-8">
+            <Button
+              onClick={handleDecreaseProductQuantity}
+              size="icon"
+              variant="outline"
+              className="h-8 w-8"
+            >
               <ArrowLeft size={16} />
             </Button>
 
             <span className="text-xs">{product.quantity}</span>
 
-            <Button size="icon" variant="outline" className="h-8 w-8">
+            <Button
+              onClick={handleIncreaseProductQuantity}
+              size="icon"
+              variant="outline"
+              className="h-8 w-8"
+            >
               <ArrowRight size={16} />
             </Button>
           </div>
         </div>
       </div>
 
-      <Button size="icon" variant="outline">
+      <Button onClick={handleDeleteProductCart} size="icon" variant="outline">
         <TrashIcon size={16} />
       </Button>
     </div>
