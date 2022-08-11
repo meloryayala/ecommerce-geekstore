@@ -25,7 +25,7 @@ const Cart = ({}) => {
                   <CartItem key={product.id} product={product} />
               ))
           ): (
-              <p className="font-semibold">You don't have products yet.</p>
+              <p className="text-center opacity-60">You don't have products yet.</p>
           )}
       </div>
 
