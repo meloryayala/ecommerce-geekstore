@@ -6,10 +6,21 @@ import CartItem from "@/components/customComponents/cartItem";
 import {Separator} from "@/components/ui/separator";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import {Button} from "@/components/ui/button";
+import {CreateCheckout} from "@/app/actions/checkout";
+import {loadStripe} from "@stripe/stripe-js";
 
 const Cart = ({}) => {
-  const { products,subTotal, total, totalDiscount } =
-    useContext(CartContext);
+  const { products,subTotal, total, totalDiscount } = useContext(CartContext);
+
+  const handlePurchaseClick = async () => {
+      const checkout = await CreateCheckout(products);
+
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
+
+      stripe?.redirectToCheckout({
+          sessionId: checkout.id,
+      })
+  }
 
   return (
     <div className="flex h-full flex-col gap-8 p-5">
@@ -60,7 +71,7 @@ const Cart = ({}) => {
           <p>€ {total.toFixed(2)}</p>
         </div>
 
-          <Button className="uppercase font-bold mt-5">
+          <Button onClick={handlePurchaseClick} className="uppercase font-bold mt-5">
               Purchase
           </Button>
       </div>
