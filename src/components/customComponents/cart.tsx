@@ -46,35 +46,37 @@ const Cart = ({}) => {
         </div>
       </ScrollArea>
 
-      <div className="flex flex-col gap-3">
-        <Separator />
-        <div className="flex items-center justify-between text-sm font-semibold">
-          <p>Subtotal</p>
-          <p>€ {subTotal.toFixed(2)}</p>
-        </div>
+        {products.length > 0 && (
+            <div className="flex flex-col gap-3">
+                <Separator />
+                <div className="flex items-center justify-between text-sm font-semibold">
+                    <p>Subtotal</p>
+                    <p>€ {subTotal.toFixed(2)}</p>
+                </div>
 
-        <Separator />
-        <div className="flex items-center justify-between text-sm font-semibold">
-          <p>Delivery</p>
-          <p>Free</p>
-        </div>
+                <Separator />
+                <div className="flex items-center justify-between text-sm font-semibold">
+                    <p>Delivery</p>
+                    <p>Free</p>
+                </div>
 
-        <Separator />
-        <div className="flex items-center justify-between text-sm font-semibold">
-          <p>Discounts</p>
-          <p>- {totalDiscount.toFixed(2)}</p>
-        </div>
+                <Separator />
+                <div className="flex items-center justify-between text-sm font-semibold">
+                    <p>Discounts</p>
+                    <p>- {totalDiscount.toFixed(2)}</p>
+                </div>
 
-        <Separator />
-        <div className="flex items-center justify-between text-sm font-semibold">
-          <p>Total</p>
-          <p>€ {total.toFixed(2)}</p>
-        </div>
+                <Separator />
+                <div className="flex items-center justify-between text-sm font-semibold">
+                    <p>Total</p>
+                    <p>€ {total.toFixed(2)}</p>
+                </div>
 
-          <Button onClick={handlePurchaseClick} className="uppercase font-bold mt-5">
-              Purchase
-          </Button>
-      </div>
+                <Button onClick={handlePurchaseClick} className="uppercase font-bold mt-5">
+                    Purchase
+                </Button>
+            </div>
+        )}
     </div>
   );
 };

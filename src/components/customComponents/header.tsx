@@ -124,8 +124,8 @@ const Header = () => {
       </Sheet>
 
       <Link href="/">
-        <h1 className="text-lg font-semibold">
-          <span className="text-primary">Geek</span>
+        <h1 className="text-lg font-bold">
+          <span className="text-primary-light">Geek</span>
           Store
         </h1>
       </Link>
