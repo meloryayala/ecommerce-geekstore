@@ -18,7 +18,8 @@ const CategoryItem: FC<CategoryItemProps> = ({category}) => {
     }
     return (
         <Badge variant="outline" className="flex items-center justify-center py-3 gap-2 rounded-lg">
-            {categoryIcon[category.slug as keyof typeof categoyIcon]}
+    {/*@ts-ignore*/}
+            {categoryIcon[category.slug]}
             <span className="text-xs font-bold">{category.name}</span>
         </Badge>
     );
