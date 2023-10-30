@@ -32,6 +32,11 @@ Homepage                     |  Products by category         |      Product deta
 ## 🛠️ Tools & frameworks
 
 [![My Skills](https://skillicons.dev/icons?i=js,ts,nextjs,tailwind,supabase,prisma,postgres,git)](https://skillicons.dev) <img src="https://github.com/meloryayala/ecommerce-geekstore/assets/79602378/4fbd5d4f-ea67-48d0-b57c-1744f908ac4e" width="50px">
+<br><br><br>
+
+## 🚦 Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/c99d47639ece51a30fa5101a5b2ab290b20433af.svg "Repobeats analytics image")
 
 
 <br> <br>
