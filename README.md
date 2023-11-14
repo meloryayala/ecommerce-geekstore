@@ -3,7 +3,7 @@
 
 > 🎯 **Focus:** Develop e-commerce for minimal digital products.
 
-[↗️ Go to **GeekStoreb** website ↗️](https://ecommerce-geekstore.vercel.app/)
+[↗️ Go to **GeekStore** website ↗️](https://ecommerce-geekstore.vercel.app/)
 
 
 <br>
