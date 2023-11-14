@@ -3,6 +3,9 @@
 
 > 🎯 **Focus:** Develop e-commerce for minimal digital products.
 
+[↗️ Go to **GeekStoreb** website ↗️](https://ecommerce-geekstore.vercel.app/)
+
+
 <br>
  
 Homepage                     |  Products by category         |      Product detail      |      Product detail
@@ -13,25 +16,25 @@ Homepage                     |  Products by category         |      Product deta
 
 ## 📋 Requirements
 
-**-Entities:**
-* Products
-* Categories
-* Users
-* Cart products
+### Entities
+`Products` <br>
+`Categories` <br>
+`Users` <br>
+`Cart products` <br>
       
 
-**-Features:**
-* User login/ logout 🦱
-* Display products by category 🏷️
-* Add products to Cart, increase quantity and delete 🗑️ 🛒
-* Payment integration with Strapi 💰
-* Manage all  purchases 📦
+### Features
+* User login/ logout
+* Display products by category
+* Add products to Cart, increase quantity and delete
+* Payment integration with Strapi
+* Manage all  purchases
 
 <br> <br>
 
 ## 🛠️ Tools & frameworks
 
-[![My Skills](https://skillicons.dev/icons?i=js,ts,nextjs,tailwind,supabase,prisma,postgres,git)](https://skillicons.dev) <img src="https://github.com/meloryayala/ecommerce-geekstore/assets/79602378/4fbd5d4f-ea67-48d0-b57c-1744f908ac4e" width="50px">
+[![My Skills](https://skillicons.dev/icons?i=ts,nextjs,tailwind,supabase,prisma,postgres,git)](https://skillicons.dev) <img src="https://github.com/meloryayala/ecommerce-geekstore/assets/79602378/4fbd5d4f-ea67-48d0-b57c-1744f908ac4e" width="50px">
 <br><br><br>
 
 ## 🚦 Stats
